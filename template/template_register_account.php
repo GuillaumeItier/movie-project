@@ -9,9 +9,13 @@
 </head>
 <body>
     <main class="container"></h1>
-        <h1>Ajouter une catégorie</h1>
+        <h1>Ajouter un compte</h1>
         <form action="" method="post">
-            <input type="text" name="name" placeholder="Saisir le nom de categorie">
+            <input type="text" name="firstname" placeholder="Saisir votre prénom">
+            <input type="text" name="lastname" placeholder="Saisir votre nom">
+            <input type="email" name="email" placeholder="Saisir votre email">
+            <input type="password" name="password" placeholder="Saisir le mot de passe">
+            <input type="password" name="confirm-password" placeholder="Confirmer le mot de passe">
             <input type="submit" value="Ajouter" name="submit">
         </form>
         <p><?= $data["error"] ?? "" ?></p>

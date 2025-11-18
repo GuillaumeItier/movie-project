@@ -11,7 +11,7 @@
 
 <body>
     <main class="container">
-        <h1>Bienvenue sur notre super site</h1>
+        <h1>Bonjour <?= $_SESSION["firstname"] ?></h1>
     </main>
 </body>
 

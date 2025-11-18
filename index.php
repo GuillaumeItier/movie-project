@@ -3,6 +3,8 @@
 include 'vendor/autoload.php';
 include 'env.php';
 
+//Demarrage de session
+session_start();
 //récupération de l'url
 $url = parse_url($_SERVER["REQUEST_URI"]);
 $path = isset($url["path"]) ? $url["path"] : "/";
@@ -11,12 +13,15 @@ $path = isset($url["path"]) ? $url["path"] : "/";
 use App\Controller\HomeController;
 use App\Controller\ErrorController;
 use App\Controller\CategoryController;
+use App\Controller\RegisterController;
+
 //Instance des controllers
 $homeController = new HomeController();
 $errorController = new ErrorController();
 $categoryController = new CategoryController();
-//instancier CategoryController
-//router
+$registerController = new RegisterController();
+
+//router deconnecté
 switch ($path) {
     case '/':
         $homeController->index();
@@ -34,9 +39,13 @@ switch ($path) {
         echo "deconnexion";
         break;
     case '/register':
-        echo "inscription";
+        $registerController->addAccount();
         break;
     default:
         $errorController->error404();
         break;
 }
+
+//router connecté user
+
+//router connecté admin
