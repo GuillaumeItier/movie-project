@@ -5,7 +5,7 @@
         </ul>
         <ul>
             <li><a href="/">Accueil</a></li>
-            <?php if(isset($_SESSION["connected"]) && $_SESSION["connected"] == true) :?>
+            <?php if(isset($_SESSION["connected"]) && $_SESSION["connected"] == true) : ?>
             <li><a href="/category/add">Ajouter categorie</a></li>
             <li><a href="/categories">Liste categories</a></li>
             <li><a href="/logout">Déconnexion</a></li>
