@@ -37,7 +37,7 @@ switch ($path) {
         $registerController->login();
         break;
     case '/logout':
-        echo "deconnexion";
+        $registerController->logout();
         break;
     case '/register':
         $registerController->addAccount();

@@ -8,6 +8,7 @@
     <title><?= $title ?></title>
 </head>
 <body>
+    <?php include 'component/navbar.php'?>
     <main class="container">
         <h1>Liste des categories</h1>
         <?php foreach($data as $category): ?>

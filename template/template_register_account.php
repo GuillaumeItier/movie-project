@@ -8,6 +8,7 @@
     <title><?= $title ?></title>
 </head>
 <body>
+    <?php include 'component/navbar.php'?>
     <main class="container"></h1>
         <h1>Ajouter un compte</h1>
         <form action="" method="post">

@@ -10,8 +10,9 @@
 </head>
 
 <body>
+    <?php include 'component/navbar.php'?>
     <main class="container">
-        <h1>Bonjour <?= $_SESSION["firstname"] ?></h1>
+        <h1>Bonjour <?= $_SESSION["firstname"] ?? "" ?></h1>
     </main>
 </body>
 

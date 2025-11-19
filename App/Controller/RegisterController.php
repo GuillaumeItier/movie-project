@@ -62,6 +62,8 @@ class RegisterController
                         //Ajout du compte en BDD
                         $this->accountRepository->saveAccount($account);
                         $data["valid"] = "Le compte : " . $account->getEmail() . " a été ajouté en BDD";
+                        //redirection dans 2 sec sur accueil
+                        header("Location: /");
                     }
                     //Message d'erreur le compte existe déja
                     else {
@@ -124,5 +126,11 @@ class RegisterController
         }
             
         return $this->render("login", "Connexion", $data);
+    }
+
+    public function logout()
+    {
+        session_destroy();
+        header('Location: /');
     }
 }
