@@ -13,6 +13,16 @@ cd movie-project
 ```sh
 composer install
 ```
+
+### 5 Créer un fichier env.php avec les informations de la BDD
+```php
+<?php
+
+const DB_USERNAME = ""; //Login de la BDD
+const DB_PASSWORD = ""; //Password de la BDD
+const DB_SERVER = "localhost"; //Hote de la BDD
+const DB_NAME = "movies"; //Nom de la BDD
+``` 
 ### 4 démarrer le serveur PHP
 ```sh
 php -S 127.0.0.1:8000
