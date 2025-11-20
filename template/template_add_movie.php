@@ -30,12 +30,13 @@
                     <option disabled>
                         Sélectionner les categories...
                     </option>
+                    <!--Boucle pour créer les options de la liste déroulante -->
                     <?php foreach ($data["categories"] as $category) :?>
                         <option value="<?= $category["id"] ?>"><?= $category["name"] ?></option>
                     <?php endforeach ?>
                 </select>
-                <fieldset>
-                    <input type="submit" value="Ajouter" name="submit">
+            <fieldset>
+                <input type="submit" value="Ajouter" name="submit">
         </form>
         <p><?= $data["error"] ?? "" ?></p>
         <p><?= $data["valid"] ?? "" ?></p>
