@@ -115,9 +115,9 @@ class RegisterController
                         $_SESSION["lastname"] = $account["lastname"];
                         $_SESSION["email"] = $account["email"];
                         $_SESSION["id"] = $account["id"];
+                        $_SESSION["grant"] = $account["name"];
                         $_SESSION["connected"] = true;
-                        //Afficher un message pour indiquer que l'on est connecté
-                        $data["valid"] = $account["email"] . " est connecté";
+                        return header('Location: /');
                     } 
                     //Sinon on affiche un message d'erreur (erreur password)
                     else {

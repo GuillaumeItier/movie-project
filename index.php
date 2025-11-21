@@ -24,37 +24,71 @@ $categoryController = new CategoryController();
 $registerController = new RegisterController();
 $movieController = new MovieController();
 
-//router deconnecté
-switch ($path) {
-    case '/':
-        $homeController->index();
-        break;
-    case '/category/add':
-        $categoryController->addCategory();
-        break;
-    case '/categories':
-        $categoryController->showAllCategories();
-        break;
-    case '/login':
-        $registerController->login();
-        break;
-    case '/logout':
-        $registerController->logout();
-        break;
-    case '/register':
-        $registerController->addAccount();
-        break;
-    case '/movie/add':
-        $movieController->addMovie();
-        break;
-    case '/movies':
-        $movieController->showAllMovies();
-        break;
-    default:
-        $errorController->error404();
-        break;
+//Tester si les super globales Session existe
+if (isset($_SESSION["connected"]) && $_SESSION["connected"] == true) {
+    //test si connecté en tant que Admin
+    if (isset($_SESSION["grant"]) && $_SESSION["grant"] == "ROLE_ADMIN") {
+        //router connecté en tant que Admin
+        switch ($path) {
+            case '/':
+                $homeController->index();
+                break;
+            case '/logout':
+                $registerController->logout();
+                break;
+            case '/movie/add':
+                $movieController->addMovie();
+                break;
+            case '/movies':
+                $movieController->showAllMovies();
+                break;
+            case '/category/add':
+                $categoryController->addCategory();
+                break;
+            case '/categories':
+                $categoryController->showAllCategories();
+                break;
+            default:
+                $errorController->error404();
+                break;
+        }
+    } 
+    //router connecté user
+    else {
+        switch ($path) {
+            case '/':
+                $homeController->index();
+                break;
+            case '/logout':
+                $registerController->logout();
+                break;
+            case '/movie/add':
+                $movieController->addMovie();
+                break;
+            case '/movies':
+                $movieController->showAllMovies();
+                break;
+            default:
+                $errorController->error404();
+                break;
+        }
+    }
 }
+//router deconnecté
+else {
 
-//router connecté user
-
-//router connecté admin
+    switch ($path) {
+        case '/':
+            $homeController->index();
+            break;
+        case '/login':
+            $registerController->login();
+            break;
+        case '/register':
+            $registerController->addAccount();
+            break;
+        default:
+            $errorController->error404();
+            break;
+    }
+}

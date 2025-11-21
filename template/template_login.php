@@ -17,7 +17,6 @@
             <input type="submit" value="Connexion" name="submit">
         </form>
         <p><?= $data["error"] ?? "" ?></p>
-        <p><?= $data["valid"] ?? "" ?></p>
     </main>
 </body>
 </html>

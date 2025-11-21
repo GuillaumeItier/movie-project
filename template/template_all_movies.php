@@ -13,15 +13,18 @@
     <?php include 'component/navbar.php'; ?>
     <main class="container">
         <section class="grid">
+            <!-- Boucle pour afficher les movies -->
             <?php foreach ($data["movies"] as $movie): ?>
             <article>
                 <header><h2><?= $movie["title"] ?></h2></header>
                 <p><?= $movie["description"] ?></p> 
                 <p><?=  $movie["publish_at"]?></p>
-                <?php 
+                <?php
+                    //transformer la chaine en tableau 
                     $categories = explode(",", $movie["categories"]);
                 ?>
                 <footer>
+                    <!-- Boucle pour afficher les categories -->
                     <?php foreach ($categories as $category): ?>
                     <h3><?= $category . " "?></h3>
                     <?php endforeach ?>

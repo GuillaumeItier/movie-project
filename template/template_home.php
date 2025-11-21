@@ -12,7 +12,7 @@
 <body>
     <?php include 'component/navbar.php'?>
     <main class="container">
-        <h1>Bienvenue <?= $_SESSION["firstname"] ?? "" ?> sur le site Movie project</h1>
+        <h1>Bienvenue sur le site Movie project</h1>
     </main>
 </body>
 

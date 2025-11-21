@@ -5,7 +5,11 @@
         </ul>
         <ul>
             <li><strong><a href="/" data-tooltip="Accueil">Accueil</a></strong></li>
+            <!-- Condition test si connecté -->
             <?php if (isset($_SESSION["connected"]) && $_SESSION["connected"] == true) : ?>
+                <!-- Si le role est ROLE_ADMIN -->   
+                <?php if (isset($_SESSION["grant"]) && $_SESSION["grant"] === "ROLE_ADMIN") : ?>
+                 
                 <li>
                     <details class="dropdown">
                         <summary>
@@ -17,6 +21,7 @@
                         </ul>
                     </details>
                 </li>
+                <?php endif ?>
                 <li>
                     <details class="dropdown">
                         <summary>
@@ -29,6 +34,7 @@
                     </details>
                 </li>
                 <li><a href="/logout" data-tooltip="Déconnexion">Déconnexion</a></li>
+            <!-- Condition test si deconnecté -->
             <?php else : ?>
                 <li><a href="/login" data-tooltip="Connexion">Connexion</a></li>
                 <li><a href="/register" data-tooltip="Inscription">Inscription</a></li>

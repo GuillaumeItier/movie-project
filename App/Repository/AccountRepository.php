@@ -84,7 +84,9 @@ class AccountRepository
     {
         try {
             //Ecrire la requête
-            $sql = "SELECT id, firstname, lastname, email, `password` FROM account WHERE email = ?";
+            $sql = "SELECT a.id, a.firstname, a.lastname, a.email, a.`password`, g.`name` FROM account AS a 
+                    INNER JOIN `grant` AS g ON a.id_grant = g.id
+                    WHERE email = ?";
             //Préparer la requête
             $req = $this->connect->prepare($sql);
             //Assigner le paramètre
