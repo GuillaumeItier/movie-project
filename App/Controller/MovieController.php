@@ -101,13 +101,13 @@ class MovieController extends AbstractController
             } catch (ValidationException $ve) {
                 $data["error"] = $ve->getMessage();
             }
-            //Récupération des catégories(pour la vue)
-            $categories = $this->categoryRepository->findAllCategories();
-            //Ajout des Categories au tableau $data
-            $data["categories"] = $categories;
-            //Afficher la vue
-            return $this->render("add_movie", "Add Category", $data);
         }
+        //Récupération des catégories(pour la vue)
+        $categories = $this->categoryRepository->findAllCategories();
+        //Ajout des Categories au tableau $data
+        $data["categories"] = $categories;
+        //Afficher la vue
+        return $this->render("add_movie", "Add Category", $data);
     }
 
     /**
