@@ -30,6 +30,7 @@
                         <ul dir="rtl">
                             <li><a href="/movie/add">Ajouter un Film</a></li>
                             <li><a href="/movies">Liste des Films</a></li>
+                            <li><a href="/account/movie">Associer un Film</a></li>
                         </ul>
                     </details>
                 </li>

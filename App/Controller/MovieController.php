@@ -31,7 +31,7 @@ class MovieController extends AbstractController
      * Méthode pour ajouter un film (Movie)
      * @return mixed Retourne le template
      */
-    public function addMovie()
+    public function addMovie(): mixed
     {
         //Tableau avec les messages pour la vue
         $data = [];

@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Model\Grant;
 use App\Model\Account;
+use App\Model\Movie;
 use App\Repository\AccountRepository;
+use App\Repository\MovieRepository;
 use App\Utils\Tools;
 use App\Controller\AbstractController;
 use Mithridatem\Validation\Validator;
@@ -14,12 +16,15 @@ class RegisterController extends AbstractController
 {
     //Attributs
     private AccountRepository $accountRepository;
+    private MovieRepository $movieRepository;
     private Validator $validator;
+
     //Constructeur
     public function __construct()
     {
         //Injection de dépendance
         $this->accountRepository = new AccountRepository();
+        $this->movieRepository = new MovieRepository();
         $this->validator = new Validator();
     }
 
@@ -27,7 +32,7 @@ class RegisterController extends AbstractController
 
     /**
      * Méthode pour ajouter un Compte Account en BDD
-     * @return void include le template 
+     * @return mixed include le template 
      */
     public function addAccount(): mixed
     {
@@ -88,7 +93,7 @@ class RegisterController extends AbstractController
 
     /**
      * Méthode pour se connecter
-     * @return void include le template 
+     * @return mixed include le template 
      */
     public function login(): mixed
     {
@@ -142,5 +147,46 @@ class RegisterController extends AbstractController
     {
         session_destroy();
         header('Location: /');
+    }
+
+    /**
+     * Méthode pour associer un film (Movie) à l'utilisateur (Account) connecté
+     * @return mixed include le template 
+     */
+    public function addMovieToAccount(): mixed
+    {
+        //Tableau données à passer au template
+        $data = [];
+        //Test si le formulaire est submit
+        if (isset($_POST["submit"])) {
+            //Test si le film (Movie) est sélectionné
+            if (isset($_POST["movie"])) {
+                //Créer un objet Movie
+                $movie = new Movie();
+                //Setter id
+                $movie->setId((int) Tools::sanitize($_POST["movie"]));
+                //Récupération de l'ID account
+                $idAccount = $_SESSION["id"];
+                //Test si le film (Movie) n'est pas associé au compte (Account)
+                if (!$this->accountRepository->isMovieToAccountExists($movie, $idAccount )) {
+                    //Appel de la méthode (associer un film)
+                    $this->accountRepository->saveMovieToAccount($movie, $idAccount);
+                    $data["valid"] = "Le film a été associé";
+                } 
+                //Sinon on affiche une erreur
+                else {
+                    $data["error"] = "Le film est déja associé en BDD";
+                }
+            }
+            //Sinon le film (Movie) n'est pas sélectionné
+            else {
+                $data["error"] = "Veuillez sélectionner un film";
+            }
+        
+        }
+        //Tableau de films
+        $data["movies"] = $this->movieRepository->findAllMovies();
+        //rendu du template
+        return $this->render("add_movie_to_account", "Associer film", $data);
     }
 }
